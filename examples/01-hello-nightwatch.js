@@ -1,11 +1,20 @@
-import { handleBlankClick, handleSelfClick, handleHover } from '../click'
+import { 
+  handleBlankClick,
+  handleSelfClick, 
+  handleHover, 
+  handleRecommendClick,
+  handleSearch,
+  scrollToElement 
+} from '../click'
 
 module.exports = {
   'hover浮层': function (browser) {
       /* -----------  送货城市-切换城市  ----------- */
     browser
-      .url('http://jd.com')
+      .url('http://www.jd.com/2019')
       .waitForElementVisible('body',1000)
+      .maximizeWindow()
+      .pause(1000)
       handleHover(browser,'#ttbar-mycity','.dd.dropdown-layer')
       .useXpath()
       .click('//div[@class="ui-areamini-content-list"]/div[@class="item"]/a[text()="河南"]')
@@ -27,17 +36,21 @@ module.exports = {
       /* -----------  服务入口  ----------- */  
       .moveToElement('//a[@class="link-login"]',2,2)
       handleHover(browser,'//i[@class="service_ico service_ico_jipiao"]','//div[@id="squares-jipiao"]')
+      /* -----------  排行榜  ----------- */
+      scrollToElement(browser,'#J_seckill')
+      handleHover(browser,'//div[@class="tab top_tab"]/div[@class="tab_head"]/div[contains(@class,"tab_head_item")][2]','//div[@class="tab top_tab"]/div[@class="tab_body"]/div[contains(@class,"tab_body_item")][2]')
       .end()
   },
   'click事件': function(browser) {
     browser
-      .url('http://jd.com')
-      .waitForElementVisible('//body',1000)
       .useXpath()
+      .url('http://www.jd.com/2019')
+      .waitForElementVisible('//body',1000)
+      .maximizeWindow()
       /* -----------  登录  ----------- */
-      handleSelfClick(browser,'//a[@class="link-login"]','passport','http://jd.com')
+      handleSelfClick(browser,'//a[@class="link-login"]','passport','http://www.jd.com/2019')
       /* -----------  注册  ----------- */
-      handleSelfClick(browser,'//a[text()="免费注册"]','reg','http://jd.com')
+      handleSelfClick(browser,'//a[text()="免费注册"]','reg','http://www.jd.com/2019')
       /* -----------  我的订单  ----------- */
       handleBlankClick(browser,'//div[@class="dt"]/a[text()="我的订单"]','passport')
       /* -----------  我的京东  ----------- */
@@ -47,16 +60,41 @@ module.exports = {
       /* -----------  企业采购  ----------- */
       handleBlankClick(browser,'//div[@class="dt cw-icon"]/a[text()="企业采购"]','b.jd.com') 
       /* -----------  JOY寻宝  ----------- */
-      .click('//a[@class="link-login"]')
-      .pause(3000)
+      handleHover(browser,'//div[@class="w"]/div[@class="logo"]','//a[@class="logo_scene logo_scene_animateend logo_scene_withBg "]',1000)
+      handleBlankClick(browser,'//a[@class="logo_scene logo_scene_animateend logo_scene_withBg "]','hellojoy.jd.com')
+      /* -----------  首焦   ----------- */
+      handleBlankClick(browser,'//li[@class="slider_item focus-slider__item focus-item slider_active"]/a[@class="focus-item__core"]',"jd")  
+      /* -----------  今日推荐     ----------- */
+      handleRecommendClick(browser,'.recommend-item.fade-in',"jd")
+      /* -----------  购物菜单栏     ----------- */
+      handleBlankClick(browser,'//li[@class="cate_menu_item" and @data-index="1"]/a',"jiadian.jd.com")
+      /* -----------  搜索框     ----------- */
+      handleSearch(browser,'//input[@id="key"]','abc','.form > .button','search.jd.com','http://www.jd.com/2019')
+      /* -----------  导航入口条     ----------- */
+      handleBlankClick(browser,'//ul[@id="navitems-group1"]/li[@class="fore3"]/a[@class="navitems-lk"]','jd.com')
+      /* -----------  热搜     ----------- */
+      handleBlankClick(browser,'//div[@id="hotwords"]/a[@data-idx="0"]',"jd.com")
+      /* -----------  我的购物车     ----------- */
+      handleBlankClick(browser,'//div[@class="cw-icon"]/a[text()="我的购物车"]','cart.jd.com')
+      /* -----------  秒杀楼层     ----------- */
+      scrollToElement(browser,'#J_seckill')
+      handleBlankClick(browser,'//div[@class="seckill-list"]/div[@class="slider"]/div[@class="slider_list"]/div[@class="slider_wrapper"]/a[@data-index="0"]','jd.com')
+      /* -----------  排行榜     ----------- */
+      handleBlankClick(browser,'//div[@class="tab top_tab"]/div[@class="tab_body"]/div[contains(@class,"tab_body_item")][1]/div[@class="top_list"]/div[@class="top_item top_item_1"]','jd')
+      /* -----------  品牌闪购     ----------- */
+      handleBlankClick(browser,'//div[@class="lightning-buy__container"]/a[contains(@class,"goods-core")]','jd')
+      /* -----------  发现好货     ----------- */
+      scrollToElement(browser,'#J_core1')
+      handleBlankClick(browser,'//a[contains(@class,"nice-goods__logo")]','jd')
+      /* -----------  领券中心     ----------- */
+      scrollToElement(browser,'#J_niceGoods')
+      handleBlankClick(browser,'//div[@class="coupon_item coupon_item_1"]','jd')
+      /* -----------  逛好店     ----------- */
+      handleBlankClick(browser,'//a[contains(@class,"shop-item")][1]','jd')
+      /* -----------  发现     ----------- */
+      handleBlankClick(browser,'//div[@class="slider_item discover_item slider_active"]','jd')
+      /* -----------  新品首发     ----------- */
+      handleBlankClick(browser,'//a[contains(@class,"new_arrival_item new_arrival_item_main")]','jd')
       .end()
-      // .windowHandles(function (result) {
-      //   const handle = result.value[1]
-      //   browser.switchWindow(handle)
-      // })
-      // .useCss()
-      // .waitForElementVisible('body',1000)
-      // .assert.urlContains('hellojoy.jd.com')
-      // .end()    
   }
 };
