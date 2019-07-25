@@ -4,7 +4,9 @@ import {
   handleHover, 
   handleRecommendClick,
   handleSearch,
-  scrollToElement 
+  scrollToElement,
+  checkBackToElement,
+  scrollToFooter 
 } from '../click'
 
 module.exports = {
@@ -95,6 +97,28 @@ module.exports = {
       handleBlankClick(browser,'//div[@class="slider_item discover_item slider_active"]','jd')
       /* -----------  新品首发     ----------- */
       handleBlankClick(browser,'//a[contains(@class,"new_arrival_item new_arrival_item_main")]','jd')
+      /* -----------  频道广场     ----------- */
+      scrollToElement(browser,'#J_core2')
+      handleBlankClick(browser,'//div[contains(@class,"slider_item channels_block channels_block_1")]/div[@class="channels_block_wrapper"]/div[@class="channels_item channels_item_1"]','jd')
+      /* -----------  为你推荐     ----------- */
+      scrollToElement(browser,'#J_feeds')
+      .click('//li[@id="feedTab1"]')
+      handleBlankClick(browser,'//ul[@id="feedContent1"]/li[1]','jd')
+      /* -----------  底部     ----------- */
+      scrollToFooter(browser,1500,12000)
+      handleBlankClick(browser,'//div[@class="mod_help_nav"]/ul[1]/li[1]/a','jd')
+      /* -----------  电梯-客服     ----------- */
+      handleBlankClick(browser,'//span[@class="elevator_lk_txt" and text()="客服"]','jd')
+      /* -----------  电梯-反馈     ----------- */
+      handleBlankClick(browser,'//span[@class="elevator_lk_txt" and text()="反馈"]','jd')
+      /* -----------  电梯-频道广场     ----------- */
+      checkBackToElement(browser,'//span[@class="elevator_lk_txt" and text()="频道广场"]','//div[@id="J_channels"]')
+      /* -----------  电梯-特色优选     ----------- */
+      checkBackToElement(browser,'//span[@class="elevator_lk_txt" and text()="特色优选"]','//div[@id="J_spec"]')
+      /* -----------  电梯-京东秒杀     ----------- */
+      checkBackToElement(browser,'//span[@class="elevator_lk_txt" and text()="京东秒杀"]','//div[@id="J_seckill"]')
+      /* -----------  电梯-返回顶部     ----------- */
+      checkBackToElement(browser,'//a[@class="elevator_totop"]','//li[@id="J_mobile"]')
       .end()
   }
 };
