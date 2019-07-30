@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add babel-plugin-add-module-exports babel-core babel-preset-es2015
+  /usr/local/bin/node /usr/local/bin/yarn add @babel/core @babel/cli @babel/preset-env
 
 PATH: 
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/xuanzebin3/Downloads/platform-tools:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:.:.
 
 Yarn version: 
   1.16.0
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/Users/xuanzebin3/Desktop/repos/o2_autoTest/node_modules/address/README.md'
+  Error: EACCES: permission denied, mkdir '/Users/xuanzebin3/Desktop/repos/o2_autoTest/node_modules/babel-generator/node_modules/jsesc'
 
 npm manifest: 
   {

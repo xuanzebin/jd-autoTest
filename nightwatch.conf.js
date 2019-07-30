@@ -1,5 +1,3 @@
-require('babel-register')()
-
 module.exports = {
    src_folders: [''],
    output_folder: 'output',
