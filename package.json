@@ -20,7 +20,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "babel":"./node_modules/.bin/babel src --out-dir lib --presets=@babel/env",
+    "dev":"./node_modules/.bin/nightwatch ./lib/test/jdTest.js --env chrome"
   },
   "repository": {
     "type": "git",

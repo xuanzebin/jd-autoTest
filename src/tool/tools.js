@@ -35,7 +35,7 @@ export function handleHover(browser, element, layer, msg, pauseTime = 0,) {
   return browser
 }
 
-export function handleRecommendClick(browser, element, assert, msg = '') {
+export function handleRootClick(browser, element, assert, msg = '') {
   return browser.execute(function(element) {
     document.querySelectorAll(element)[0].click()
   },[element])
