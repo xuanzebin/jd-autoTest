@@ -15,7 +15,7 @@ const test = require(path)
 module.exports = {
   'hover浮层': function (browser) {
     const hoverList = test.hoverList
-    let selectorType = 'css'
+    let currentType = 'css'
 
     browser
       .url(test.url)
@@ -24,29 +24,31 @@ module.exports = {
       .pause(1000)
 
     hoverList.forEach((item) => {
-      if (item.selectorType !== selectorType) {
-        selectorType = item.selectorType
-        if (selectorType === 'css') {
+      let {name, leaveFocusElement, scrollElement, selector, targetSelector, selectorType} = item
+
+      if (selectorType !== currentType) {
+        currentType = selectorType
+        if (currentType === 'css') {
           browser.useCss()
-        } else if (selectorType === 'Xpath') {
+        } else if (currentType === 'Xpath') {
           browser.useXpath()
         }
       }
 
-      if (item.leaveFocusElement) {
-        browser.moveToElement(item.leaveFocusElement, 2, 2)
+      if (leaveFocusElement) {
+        browser.moveToElement(leaveFocusElement, 2, 2)
       }
-      if (item.scrollElement) {
-        scrollToElement(browser, item.scrollElement)
+      if (scrollElement) {
+        scrollToElement(browser, scrollElement)
       }
 
-      handleHover(browser, item.selector, item.targetSelector, item.name)
+      handleHover(browser, selector, targetSelector, name)
     })
     browser.end()
   },
   'click事件': function(browser) {
     const clickList = test.clickList
-    let selectorType = 'css'
+    let currentType = 'css'
     browser
       .url(test.url).useCss()
       .waitForElementVisible('body', 1000, false, test.websiteName)
@@ -54,48 +56,50 @@ module.exports = {
       .pause(1000)
     
     clickList.forEach((item) => {
-      if (item.selectorType !== selectorType) {
-        selectorType = item.selectorType
-        if (selectorType === 'css') {
+      let {name, selectorType, selector, search, target, targetUrl, targetSelector, hover, scrollElement, scrollFooter} = item
+      
+      if (selectorType !== currentType) {
+        currentType = selectorType
+        if (currentType === 'css') {
           browser.useCss()
-        } else if (selectorType === 'Xpath') {
+        } else if (currentType === 'Xpath') {
           browser.useXpath()
         }
       }
 
-      if (item.scrollElement) {
-        scrollToElement(browser, item.scrollElement)
+      if (scrollElement) {
+        scrollToElement(browser, scrollElement)
       }
-      if (item.scrollToFooter) {
+      if (scrollFooter) {
         scrollToFooter(browser,1300,15000)
       }
 
       if (selectorType === 'root') {
-        handleRootClick(browser, item.selector, item.targetUrl, item.name) 
+        handleRootClick(browser, selector, targetUrl, name) 
         return 
       }
-      if (item.search) {
-        handleSearch(browser, item.selector, item.search.value, item.search.buttonSelector, item.targetUrl, test.url,item.name)
-        return 
-      }
-
-      if (item.hover) {
-        handleHover(browser, item.hover.selector, item.hover.targetSelector, item.hover.name, 1000) //待修正
-        handleBlankClick(browser, item.selector, item.targetUrl, item.name)
+      if (search) {
+        handleSearch(browser, selector, search.value, search.buttonSelector, targetUrl, test.url,name)
         return 
       }
 
-      if (item.target === 'self') {
-        handleSelfClick(browser, item.selector, item.targetUrl, test.url, item.name)
+      if (hover) {
+        handleHover(browser, hover.selector, hover.targetSelector, hover.name, 1000) //待修正
+        handleBlankClick(browser, selector, targetUrl, name)
+        return 
+      }
+
+      if (target === 'self') {
+        handleSelfClick(browser, selector, targetUrl, test.url, name)
         return 
       } 
 
-      if (item.target === 'element') {
-        checkBackToElement(browser,item.selector,item.targetSelector,item.name)
+      if (target === 'element') {
+        checkBackToElement(browser,selector,targetSelector,name)
         return 
       }
 
-      handleBlankClick(browser, item.selector, item.targetUrl, item.name)
+      handleBlankClick(browser, selector, targetUrl, name)
     })
     browser.end()
   }

@@ -233,7 +233,7 @@ module.exports = {
       selectorType: 'Xpath',
       selector: '//div[@class="mod_help_nav"]/ul[1]/li[1]/a',
       targetUrl: 'jd',
-      scrollToFooter: true
+      scrollFooter: true
     },
     {
       name: '点击“电梯-客服”',
