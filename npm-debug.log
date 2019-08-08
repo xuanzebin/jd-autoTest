@@ -1,0 +1,33 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/lib/node_modules/@jd/jnpm/node_modules/.bin/npm',
+1 verbose cli   '--userconfig=/Users/xuanzebin3/.jnpmrc',
+1 verbose cli   '--disturl=https://npm.taobao.org/mirrors/node',
+1 verbose cli   '--registry=http://registry.m.jd.com',
+1 verbose cli   'version',
+1 verbose cli   'major' ]
+2 info using npm@3.10.10
+3 info using node@v10.16.0
+4 info git [ 'status', '--porcelain' ]
+5 verbose stack Error: Git working directory not clean.
+5 verbose stack M lib/test/jdTest.js
+5 verbose stack M selenium-server.log
+5 verbose stack M test.conf.js
+5 verbose stack     at /usr/local/lib/node_modules/@jd/jnpm/node_modules/npm/lib/version.js:247:19
+5 verbose stack     at /usr/local/lib/node_modules/@jd/jnpm/node_modules/npm/lib/utils/no-progress-while-running.js:21:8
+5 verbose stack     at ChildProcess.exithandler (child_process.js:285:7)
+5 verbose stack     at ChildProcess.emit (events.js:198:13)
+5 verbose stack     at maybeClose (internal/child_process.js:982:16)
+5 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)
+6 verbose cwd /Users/xuanzebin3/Desktop/repos/o2_autoTest
+7 error Darwin 18.5.0
+8 error argv "/usr/local/bin/node" "/usr/local/lib/node_modules/@jd/jnpm/node_modules/.bin/npm" "--userconfig=/Users/xuanzebin3/.jnpmrc" "--disturl=https://npm.taobao.org/mirrors/node" "--registry=http://registry.m.jd.com" "version" "major"
+9 error node v10.16.0
+10 error npm  v3.10.10
+11 error Git working directory not clean.
+11 error M lib/test/jdTest.js
+11 error M selenium-server.log
+11 error M test.conf.js
+12 error If you need help, you may report this error at:
+12 error     <https://github.com/npm/npm/issues>
+13 verbose exit [ 1, true ]

@@ -1,5 +1,5 @@
 module.exports = {
-  url: 'http://www.jd.com/2019',
+  url: 'http://www.jd.com',
   websiteName:'京东首页',
   hoverList: [
     {
